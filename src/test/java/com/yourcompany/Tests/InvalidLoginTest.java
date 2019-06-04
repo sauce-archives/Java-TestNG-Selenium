@@ -4,11 +4,16 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.openqa.selenium.By;
 
+import java.lang.reflect.Method;
+import java.net.MalformedURLException;
+
 public class InvalidLoginTest extends TestBase {
 
 
-    @Test
-    public void standardUser(){
+    @Test(dataProvider = "hardCodedBrowsers")
+    public void blankCredentials(String browser, String version, String os, Method method) throws MalformedURLException {
+        this.createDriver(browser, version, os, method.getName());
+
         getDriver().get("http://www.saucedemo.com");
 
         getDriver().findElement(By.id("user-name")).sendKeys("");
