@@ -1,14 +1,19 @@
 package com.yourcompany.Tests;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.testng.Assert;
+import org.testng.annotations.Test;
 import org.openqa.selenium.By;
+
+import java.lang.reflect.Method;
+import java.net.MalformedURLException;
 
 public class AddItemsToCartTest extends TestBase {
 
     
-    @Test
-    public void addOneItem(){
+    @Test(dataProvider = "hardCodedBrowsers")
+    public void addOneItem(String browser, String version, String os, Method method) throws MalformedURLException {
+        this.createDriver(browser, version, os, method.getName());
+
         getDriver().get("http://www.saucedemo.com/inventory.html");
         getDriver().findElement(By.className("btn_primary")).click();
 
@@ -21,8 +26,10 @@ public class AddItemsToCartTest extends TestBase {
 
     }
 
-    @Test
-    public void addTwoItems(){
+    @Test(dataProvider = "hardCodedBrowsers")
+    public void addTwoItems(String browser, String version, String os, Method method) throws MalformedURLException {
+        this.createDriver(browser, version, os, method.getName());
+
         getDriver().get("http://www.saucedemo.com/inventory.html");
         getDriver().findElement(By.className("btn_primary")).click();
         getDriver().findElement(By.className("btn_primary")).click();

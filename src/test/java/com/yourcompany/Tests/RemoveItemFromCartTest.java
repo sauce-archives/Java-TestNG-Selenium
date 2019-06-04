@@ -1,8 +1,9 @@
 package com.yourcompany.Tests;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.testng.Assert;
+import org.testng.annotations.Test;
 import org.openqa.selenium.By;
+
 
 public class RemoveItemFromCartTest extends TestBase {
 
